@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learning_getx/screen_one.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -82,6 +83,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
+          ),
+
+          ListTile(
+            leading: Icon(Icons.dark_mode),
+            title: Text("Go to next screen"),
+            onTap: () {
+              Get.to(ScreenOne());
+            },
           ),
         ],
       ),
