@@ -16,18 +16,32 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(title: Text("Getx Mastering")),
 
       body: Column(
+        mainAxisAlignment: .center,
+        crossAxisAlignment: .center,
         children: [
-          Container(
-            color: Colors.teal,
-            height: Get.height * .1,
-            width: Get.width * .5,
-            child: Center(child: Text("I will win")),
-          ),
-          Container(
-            color: Colors.green,
-            height: Get.height * .1,
-            width: Get.width * .5,
-            child: Center(child: Text("I will win thats sure")),
+          ListTile(title: Text('message'.tr), subtitle: Text("name".tr)),
+
+          Row(
+            children: [
+              TextButton(
+                onPressed: () {
+                  Get.updateLocale(Locale('en', 'US'));
+                },
+                child: Text("English"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Get.updateLocale(Locale('hi', 'IN'));
+                },
+                child: Text("Hindi"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Get.updateLocale(Locale('ml', 'IN'));
+                },
+                child: Text("Malayalam"),
+              ),
+            ],
           ),
         ],
       ),

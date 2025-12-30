@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:learning_getx/home_screen.dart';
+import 'package:learning_getx/languages.dart';
 import 'package:learning_getx/screen_one.dart';
 import 'package:learning_getx/screen_two.dart';
 
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      locale: Locale('en', 'US'),
+      fallbackLocale: Locale('en', 'US'),
+      translations: Languages(),
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       home: const HomeScreen(),
       // getPages: [
