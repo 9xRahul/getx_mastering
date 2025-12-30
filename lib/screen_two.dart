@@ -22,7 +22,7 @@ class _ScreenTwoState extends State<ScreenTwo> {
             onTap: () {
               // Get.back();
 
-              Get.toNamed('/ScreenOne');
+              Get.toNamed('/HomeScreen');
             },
           ),
         ],

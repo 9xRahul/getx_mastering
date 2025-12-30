@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       home: const HomeScreen(),
-      getPages: [
-        GetPage(name: '/', page: () => HomeScreen()),
+      // getPages: [
+      //   GetPage(name: '/', page: () => HomeScreen()),
 
-        GetPage(name: '/ScreenOne', page: () => ScreenOne()),
+      //   GetPage(name: '/ScreenOne', page: () => ScreenOne()),
 
-        GetPage(name: '/ScreenTwo', page: () => ScreenTwo()),
-      ],
+      //   GetPage(name: '/ScreenTwo', page: () => ScreenTwo()),
+      // ],
     );
   }
 }
