@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learning_getx/login_controller.dart';
 import 'package:learning_getx/slider_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,34 +13,47 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final Controller controller = Get.put(Controller());
+  final LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Getx Mastering")),
-      body: Obx(() {
-        return Center(
-          child: Column(
-            mainAxisAlignment: .center,
-            crossAxisAlignment: .center,
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: controller.imagePath.isNotEmpty
-                    ? FileImage(File(controller.imagePath.toString()))
-                    : null,
+      appBar: AppBar(title: const Text('Login')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            TextField(
+              controller: controller.emailController.value,
+              decoration: const InputDecoration(
+                labelText: 'Username',
+                border: OutlineInputBorder(),
               ),
-              TextButton(
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: controller.passwordController.value,
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Obx(() {
+              return ElevatedButton(
                 onPressed: () {
-                  controller.getImage();
+                  controller.loginApi();
                 },
-                child: Text("Pick"),
-              ),
-            ],
-          ),
-        );
-      }),
+                child: controller.isLoading.value
+                    ? CircularProgressIndicator()
+                    : const Text('Login'),
+              );
+            }),
+          ],
+        ),
+      ),
     );
   }
 }
