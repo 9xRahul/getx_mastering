@@ -16,24 +16,26 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Getx Mastering")),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: .center,
-          children: [
-            Obx(() {
-              return Text(controller.notification.value == true ? "On" : "off");
-            }),
-
-            Obx(() {
-              return Switch(
-                value: controller.notification.value,
-                onChanged: (value) {
-                  controller.onSwitchChanged(value);
+      body: ListView.builder(
+        itemCount: controller.fruitList.length,
+        itemBuilder: (context, index) {
+          return Obx(() {
+            return Card(
+              child: ListTile(
+                onTap: () {
+                  controller.addToFav(index);
                 },
-              );
-            }),
-          ],
-        ),
+                title: Text(controller.fruitList[index]),
+                trailing: Icon(
+                  !controller.tempFavList.contains(controller.fruitList[index])
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: Colors.red,
+                ),
+              ),
+            );
+          });
+        },
       ),
     );
   }
