@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learning_getx/slider_controller.dart';
@@ -16,27 +18,28 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Getx Mastering")),
-      body: ListView.builder(
-        itemCount: controller.fruitList.length,
-        itemBuilder: (context, index) {
-          return Obx(() {
-            return Card(
-              child: ListTile(
-                onTap: () {
-                  controller.addToFav(index);
-                },
-                title: Text(controller.fruitList[index]),
-                trailing: Icon(
-                  !controller.tempFavList.contains(controller.fruitList[index])
-                      ? Icons.favorite
-                      : Icons.favorite_border,
-                  color: Colors.red,
-                ),
+      body: Obx(() {
+        return Center(
+          child: Column(
+            mainAxisAlignment: .center,
+            crossAxisAlignment: .center,
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: controller.imagePath.isNotEmpty
+                    ? FileImage(File(controller.imagePath.toString()))
+                    : null,
               ),
-            );
-          });
-        },
-      ),
+              TextButton(
+                onPressed: () {
+                  controller.getImage();
+                },
+                child: Text("Pick"),
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
