@@ -10,28 +10,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final SliderController controller = Get.put(SliderController());
+  final Controller controller = Get.put(Controller());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Getx Mastering")),
       body: Center(
-        child: Column(
+        child: Row(
+          mainAxisAlignment: .center,
           children: [
             Obx(() {
-              return Container(
-                height: 100,
-                width: 100,
-                color: Colors.teal.withOpacity(controller.opacity.value),
-              );
+              return Text(controller.notification.value == true ? "On" : "off");
             }),
 
             Obx(() {
-              return Slider(
-                value: controller.opacity.value,
+              return Switch(
+                value: controller.notification.value,
                 onChanged: (value) {
-                  controller.sliderValue(value);
+                  controller.onSwitchChanged(value);
                 },
               );
             }),
