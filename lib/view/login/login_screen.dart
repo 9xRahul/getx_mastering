@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learning_getx/utils/utils.dart';
-import 'package:learning_getx/view_model/services/controller/login_view_model.dart';
+import 'package:learning_getx/view_model/services/controller/login/login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -82,14 +82,19 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
 
             SizedBox(height: 40),
-            Utils().roundButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {}
-              },
-              title: "Login".tr,
-              height: 40,
-              width: 200,
-            ),
+            Obx(() {
+              return Utils().roundButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    loginViewModel.loginApi();
+                  }
+                },
+                isLoading: loginViewModel.isLoading.value,
+                title: "Login".tr,
+                height: 40,
+                width: 200,
+              );
+            }),
           ],
         ),
       ),

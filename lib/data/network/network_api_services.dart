@@ -13,11 +13,12 @@ class NetworkApiServices extends BaseApiServices {
   Future<dynamic> postApi(dynamic data, String url) async {
     if (kDebugMode) {
       print(url);
+      print(data);
     }
     dynamic reponseJson;
     try {
       final response = await http
-          .post(Uri.parse(url), body: jsonEncode(data))
+          .post(Uri.parse(url), body: data)
           .timeout(Duration(seconds: 3));
 
       reponseJson = returnResponse(response);
@@ -27,6 +28,9 @@ class NetworkApiServices extends BaseApiServices {
       throw RequestTimeoutException("");
     }
 
+    if (kDebugMode) {
+      print(reponseJson);
+    }
     return reponseJson;
   }
 
@@ -58,7 +62,8 @@ class NetworkApiServices extends BaseApiServices {
         return responseJson;
 
       case 400:
-        throw InvalidUrl();
+        dynamic responseJson = jsonDecode(response.body);
+        return responseJson;
       default:
         throw FetchDataException(
           'Error occured while communicating with server ${response.statusCode.toString()}',

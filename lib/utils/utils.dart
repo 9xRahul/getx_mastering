@@ -27,6 +27,7 @@ class Utils {
   }
 
   Widget roundButton({
+    bool isLoading = false,
     required String title,
     required VoidCallback onPressed,
     double width = double.infinity,
@@ -43,14 +44,16 @@ class Utils {
             borderRadius: BorderRadius.circular(height / 2),
           ),
         ),
-        child: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        child: isLoading
+            ? CircularProgressIndicator()
+            : Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
       ),
     );
   }
