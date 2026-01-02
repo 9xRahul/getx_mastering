@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:learning_getx/resources/languages/languages.dart';
 
 import 'package:learning_getx/resources/routes/routes.dart';
 import 'package:learning_getx/view/splash_screen.dart';
@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-
+      translations: Languages(),
+      locale: Locale('en', 'US'),
+      fallbackLocale: Locale('en', 'US'),
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       home: const SplashScreen(),
       getPages: AppRoutes.appRoutes(),
